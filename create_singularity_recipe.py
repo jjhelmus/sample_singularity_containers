@@ -49,7 +49,7 @@ def get_pkg_list(env_name, python_ver):
             'lasagne',
             'keras-gpu',
             #'pytorch',     # TODO build version 1.0, mkl 2019
-            'torchvision',
+            #'torchvision', # needs pytorch
             'blaze',
             'libxslt',
             #'caffe-gpu',   # TODO rebuild to support mkl 2019

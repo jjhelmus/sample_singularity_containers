@@ -32,27 +32,26 @@ From: ubuntu:16.04
     conda install -y -q conda=4.6 anaconda=custom
 
     # install selected packages
-    conda install -y -q -c defaults -c conda-forge -c engility \ 
-        mpi4py \ 
-        pydotplus \ 
-        altair \ 
-        hdbscan \ 
-        datreant=1.0 \ 
-        tpot \ 
-        seaborn \ 
-        nb_conda \ 
-        libiconv \ 
-        ipyparallel \ 
-        mkl=2019.1=144 \ 
-        libgcc-ng=8 \ 
-        blas=*=mkl \ 
-        tensorflow-gpu \ 
-        theano \ 
-        lasagne \ 
-        keras-gpu \ 
-        torchvision \ 
-        blaze \ 
-        libxslt \ 
+    conda install -y -q -c defaults -c conda-forge -c engility \
+        mpi4py \
+        pydotplus \
+        altair \
+        hdbscan \
+        datreant=1.0 \
+        tpot \
+        seaborn \
+        nb_conda \
+        libiconv \
+        ipyparallel \
+        mkl=2019.1=144 \
+        libgcc-ng=8 \
+        blas=*=mkl \
+        tensorflow-gpu \
+        theano \
+        lasagne \
+        keras-gpu \
+        blaze \
+        libxslt \
         cudatoolkit=8.0 
 
 %runscript
