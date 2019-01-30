@@ -1,0 +1,42 @@
+Bootstrap: docker
+
+From: ubuntu:16.04
+
+%environment
+    export LANG=C.UTF-8
+    export LC_ALL=C.UTF-8
+
+%post
+    . /environment
+
+    # install necessary system libraries and utilities
+    apt-get update --fix-missing
+    apt-get install -y wget bzip2 libglib2.0-0 libxext6 libsm6 libxrender1
+
+    # install miniconda
+    MINICONDA_URL={{miniconda_url}}
+    wget --quiet $MINICONDA_URL -O ~/miniconda.sh
+    /bin/bash ~/miniconda.sh -b -p /opt/conda
+    rm ~/miniconda.sh
+    ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh
+    echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc
+    echo "conda activate base" >> ~/.bashrc
+
+    # activate the base environment
+    . /opt/conda/etc/profile.d/conda.sh
+    
+    # install anaconda
+    conda install -y -q python={{python_ver}} anaconda={{anaconda_ver}}
+
+    # update conda
+    conda install -y -q conda={{conda_ver}} anaconda=custom
+
+    # install selected packages
+    conda install -y -q {{channels}} {% for package in additional_packages %}\ 
+        {{ package }} {% endfor %}
+
+%runscript
+    echo "Starting Miniconda container"
+    . /opt/conda/etc/profile.d/conda.sh
+    conda activate base
+    exec /bin/bash
