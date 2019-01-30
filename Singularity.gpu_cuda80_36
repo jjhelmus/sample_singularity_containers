@@ -1,0 +1,62 @@
+Bootstrap: docker
+
+From: ubuntu:16.04
+
+%environment
+    export LANG=C.UTF-8
+    export LC_ALL=C.UTF-8
+
+%post
+    . /environment
+
+    # install necessary system libraries and utilities
+    apt-get update --fix-missing
+    apt-get install -y wget bzip2 libglib2.0-0 libxext6 libsm6 libxrender1
+
+    # install miniconda
+    MINICONDA_URL=https://repo.anaconda.com/miniconda/Miniconda3-4.5.12-Linux-x86_64.sh
+    wget --quiet $MINICONDA_URL -O ~/miniconda.sh
+    /bin/bash ~/miniconda.sh -b -p /opt/conda
+    rm ~/miniconda.sh
+    ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh
+    echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc
+    echo "conda activate base" >> ~/.bashrc
+
+    # activate the base environment
+    . /opt/conda/etc/profile.d/conda.sh
+    
+    # install anaconda
+    conda install -y -q python=3.6 anaconda=2018.12
+
+    # update conda
+    conda install -y -q conda=4.6 anaconda=custom
+
+    # install selected packages
+    conda install -y -q -c defaults -c conda-forge -c engility \ 
+        mpi4py \ 
+        pydotplus \ 
+        altair \ 
+        hdbscan \ 
+        datreant=1.0 \ 
+        tpot \ 
+        seaborn \ 
+        nb_conda \ 
+        libiconv \ 
+        ipyparallel \ 
+        mkl=2019.1=144 \ 
+        libgcc-ng=8 \ 
+        blas=*=mkl \ 
+        tensorflow-gpu \ 
+        theano \ 
+        lasagne \ 
+        keras-gpu \ 
+        torchvision \ 
+        blaze \ 
+        libxslt \ 
+        cudatoolkit=8.0 
+
+%runscript
+    echo "Starting Miniconda container"
+    . /opt/conda/etc/profile.d/conda.sh
+    conda activate base
+    exec /bin/bash
