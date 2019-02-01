@@ -23,7 +23,7 @@ def get_pkg_list(env_name, python_ver):
         'altair',
         'hdbscan',
         'datreant=1.0',
-        #'pymatgen',        # TODO rebuild to support libgcc>8
+        'pymatgen',
         'tpot',
         'seaborn',
         'nb_conda',
@@ -52,7 +52,7 @@ def get_pkg_list(env_name, python_ver):
             #'torchvision', # needs pytorch
             'blaze',
             'libxslt',
-            #'caffe-gpu',   # TODO rebuild to support mkl 2019
+            'caffe-gpu',
         ])
         if env_name == 'gpu_cuda80':
             pkg_list.append('cudatoolkit=8.0')

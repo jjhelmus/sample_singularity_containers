@@ -38,6 +38,7 @@ From: ubuntu:16.04
         altair \
         hdbscan \
         datreant=1.0 \
+        pymatgen \
         tpot \
         seaborn \
         nb_conda \
@@ -52,6 +53,7 @@ From: ubuntu:16.04
         keras-gpu \
         blaze \
         libxslt \
+        caffe-gpu \
         cudatoolkit=8.0 
 
 %runscript
