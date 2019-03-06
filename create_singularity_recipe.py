@@ -48,8 +48,8 @@ def get_pkg_list(env_name, python_ver):
             'theano',
             'lasagne',
             'keras-gpu',
-            #'pytorch',     # TODO build version 1.0, mkl 2019
-            #'torchvision', # needs pytorch
+            'pytorch',
+            'torchvision',
             'blaze',
             'libxslt',
             'caffe-gpu',
