@@ -1,3 +1,4 @@
+import sys
 import pytest
 import importlib
 
@@ -28,7 +29,6 @@ libs_to_import = [
     'atomicwrites',
     'attr',  # 'attrs',
     'babel',
-    'backcall',
     'backports',
     'backports.os',
     'backports.shutil_get_terminal_size',
@@ -49,7 +49,6 @@ libs_to_import = [
     'clyent',
     'colorama',
     'conda',
-    'conda_build',
     'contextlib2',
     'cryptography',
     'cv2',  # 'py_opencv',
@@ -96,7 +95,6 @@ libs_to_import = [
     'itsdangerous',
     'jdcal',
     'jedi',
-    'jeepney',
     'jinja2',
     'jsonschema',
     'jupyter',
@@ -104,12 +102,9 @@ libs_to_import = [
     'jupyter_console',
     'jupyter_core',
     'jupyterlab',
-    'jupyterlab_server',
     'keras_applications',
     'keras_preprocessing',
-    'keyring',
     'kiwisolver',
-    'lasagne',
     'lazy_object_proxy',
     'leveldb',  # 'python_leveldb',
     'libarchive',  # 'python_libarchive-c',
@@ -117,7 +112,6 @@ libs_to_import = [
     'llvmlite',
     'locket',
     'lxml',
-    'mako',
     'markdown',
     'markupsafe',
     'matplotlib',
@@ -176,16 +170,11 @@ libs_to_import = [
     'pydotplus',
     'pyflakes',
     'pygments',
-    'pygpu',
     'pylint',
     'pymatgen',
     'pyodbc',
     'pyparsing',
     'pytest',
-    'pytest_arraydiff',
-    'pytest_doctestplus',
-    'pytest_openfiles',
-    'pytest_remotedata',
     'pytz',
     'pywt',  # 'pywavelets',
     'qtconsole',
@@ -197,7 +186,6 @@ libs_to_import = [
     'scandir',
     'scipy',
     'seaborn',
-    'secretstorage',
     'send2trash',
     'setuptools',
     'simplegeneric',
@@ -227,15 +215,11 @@ libs_to_import = [
     'termcolor',
     'terminado',
     'testpath',
-    'theano',
     'toolz',
-    'torch',   # 'pytorch',
-    'torchvision',
     'tornado',
     'tpot',
     'tqdm',
     'traitlets',
-    'typed_ast',
     'unicodecsv',
     'update_checker',
     'urllib3',
@@ -253,6 +237,25 @@ libs_to_import = [
     'zict',
     'zmq',  # 'pyzmq',
 ]
+
+
+py3_only = [
+    'backcall',  # Python 3 only
+    'secretstorage',  # Python 3 only
+    'typed_ast',  # py3 only
+    'pytest_arraydiff',   # Python 3 only
+    'pytest_doctestplus', # Python 3 only
+    'pytest_openfiles',   # Python 3 only
+    'pytest_remotedata',  # Python 3 only
+    'jupyterlab_server',  # Python 3 only
+    'keyring',   # Python 3 only
+    'jeepney',  # Python 3 only
+]
+
+if sys.version_info[0] == 3:
+    libs_to_import.extend(py3_only)
+
+
 
 
 @pytest.mark.parametrize("lib_to_import", libs_to_import)
