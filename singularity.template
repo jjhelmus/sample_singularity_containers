@@ -6,6 +6,9 @@ From: ubuntu:16.04
     export LANG=C.UTF-8
     export LC_ALL=C.UTF-8
 
+%files
+    sitecustomize.py /opt
+
 %post
     . /environment
 
@@ -34,6 +37,10 @@ From: ubuntu:16.04
     # install selected packages
     conda install -y -q {{channels}} {% for package in additional_packages %}\
         {{ package }} {% endfor %}
+
+    # mv sitecustomize.py file
+    SP_DIR=`/opt/conda/bin/python -c "import site; print(site.getsitepackages()[0])"`
+    mv /opt/sitecustomize.py $SP_DIR
 
 %runscript
     /bin/bash --noprofile --rcfile /etc/bash.conda
