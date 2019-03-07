@@ -46,7 +46,7 @@ def get_pkg_list(env_name, python_ver):
         pkg_list.extend([
             'tensorflow-gpu',
             'theano',
-            'lasagne',
+            'lasagne=2',
             'keras-gpu',
             'pytorch',
             'torchvision',
