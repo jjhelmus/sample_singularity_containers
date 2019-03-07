@@ -29,7 +29,7 @@ From: ubuntu:16.04
     . /opt/conda/etc/profile.d/conda.sh
 
     # install anaconda
-    conda install -y -q python=3.6 anaconda=2018.12
+    conda install -y -q python=2.7 anaconda=2018.12
 
     # update conda
     conda install -y -q conda=4.6 anaconda=custom
@@ -59,7 +59,7 @@ From: ubuntu:16.04
         blaze \
         libxslt \
         caffe-gpu \
-        cudatoolkit=8.0 
+        cudatoolkit=9.0 
 
     # mv sitecustomize.py file
     SP_DIR=`/opt/conda/bin/python -c "import site; print(site.getsitepackages()[0])"`
