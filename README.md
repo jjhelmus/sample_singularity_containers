@@ -6,7 +6,7 @@ as other key data analysis packages.
 # Building the Containers
 
 Building the Singularity containers in this repository consists of two steps,
-generating the recipes and the builds themselves.  
+generating the recipes and the builds themselves.
 
 To generate the container recipes run the command
 `../create_singularity_recipe.py`.  This scripts create a set of six
@@ -15,14 +15,14 @@ generating by filling in the appropriate variables in the recipe template
 *singularity.template* for the various combinations of configurations.  This
 script can also be used to generate a single recipe by specifying the
 `--python_ver` and `--env_name arguments`.  Use the `--help` argument to show
-information about these and other arguments.  
+information about these and other arguments.
 
 Each recipe file specifies the steps needed create a conda environment
 containing a recent version, 2018.12, of Anaconda as well some additional data
 analysis packages including Tensorflow, Caffe and PyTorch.  The difference
 between the six recipe is the version of Python they install, 2.7 or 3.6, if
 they install GPU accelerated versions of the packages, cpu vs gpu, and for the
-GPU accelerated recipes which version of CUDA is installed, 8.0 or 9.0.  
+GPU accelerated recipes which version of CUDA is installed, 8.0 or 9.0.
 
 Once the recipe have been generated Singularity containers can be created by
 running `sudo singularity build container_name recipe_name` where
@@ -37,7 +37,7 @@ The resulting container can be run by executing the created file or using the
 should be added to to singularity command to enable NVIDIA support in the
 container.
 
-The containers in this repository are also built on 
+The containers in this repository are also built on
 [Singularity Hub](https://www.singularity-hub.org/collections/2250).
 
 # Testing Containers
@@ -46,16 +46,17 @@ A test suite is included in this repository which can be used to test basic
 functionality of installed libraries in the containers.  These tests should be
 run inside the containers after they have built to verify their functionality.
 To run these tests start the container using `singularity run
-container_name.simg`.  From the shell execute `pytest tests/test_cpu*`. 
+container_name.simg`.  From the shell execute `export MPLBACKEND=Agg` then
+`pytest tests/test_cpu*`.
 
-For GPU containers start the container with using `singularity run --nv
-container_name.simg` and execute the test using `pytest tests/test*`
+For GPU containers started using `singularity run --nv container_name.simg`
+GPU tests can be executed using `pytest tests/test_gpu*`
 
 # Logging Imports
 
 The Singularity containers created via these means will log imports of Python
 libraries to a file or a remote server if certain environment variables are
-set.  
+set.
 
 The **PYIMPORT_LIBLIST** variable should be set to a comma separated string of
 the libraries whose imports are to be logged.  For example to log all imports
