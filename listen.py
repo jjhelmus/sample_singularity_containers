@@ -13,4 +13,4 @@ serverSock.bind((UDP_IP_ADDRESS, UDP_PORT_NO))
 while True:
     data, addr = serverSock.recvfrom(1024)
     dic = pickle.loads(data[4:])
-    pprint.pprint(dic)
+    pprint(dic)
