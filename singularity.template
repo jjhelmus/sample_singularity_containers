@@ -17,10 +17,11 @@ From: ubuntu:16.04
     apt-get install -y wget bzip2 libglib2.0-0 libxext6 libsm6 libxrender1
 
     # install miniconda
+    mkdir -p /opt
     MINICONDA_URL={{miniconda_url}}
-    wget --quiet $MINICONDA_URL -O ~/miniconda.sh
-    /bin/bash ~/miniconda.sh -b -p /opt/conda
-    rm ~/miniconda.sh
+    wget --quiet $MINICONDA_URL -O /opt/miniconda.sh
+    /bin/bash /opt/miniconda.sh -b -p /opt/conda
+    rm /opt/miniconda.sh
     ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh
     echo ". /etc/profile.d/conda.sh" >> /etc/bash.conda
     echo "conda activate base" >> /etc/bash.conda
